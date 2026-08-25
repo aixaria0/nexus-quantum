@@ -8,7 +8,7 @@ A research prototype that combines AI-guided VQE optimization, Lean 4 constraint
 
 ## Demo
 
-The live dashboard shows four main components:
+The live dashboard shows four main components: https://github.com/aixaria0/nexus-quantum
 
 - Cognitive Engine
 - QLF Null-Cone Boundary
