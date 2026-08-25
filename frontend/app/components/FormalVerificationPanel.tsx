@@ -78,7 +78,7 @@ const FormalVerificationPanel: React.FC = () => {
               <ul className="text-sm space-y-1">
                 {proof.key_lemmas.map((lemma: string, idx: number) => (
                   <li key={idx} className="text-gray-300 ml-4">
-                    <span className="text-quantum-accent">▹</span> {lemma}
+                    <span className="text-quantum-accent">▸</span> {lemma}
                   </li>
                 ))}
               </ul>
@@ -103,7 +103,7 @@ const FormalVerificationPanel: React.FC = () => {
         
         <div className="space-y-6">
           <div>
-            <h4 className="font-semibold text-quantum-primary mb-2">🎯 ZFA Hypothesis</h4>
+            <h4 className="font-semibold text-quantum-primary mb-2">🏔️ ZFA Hypothesis</h4>
             <p className="text-sm text-gray-300 mb-2">
               Zero-Fidelity-Alignment (ZFA) defines when a quantum circuit achieves perfect consistency
               through its geometric spectral properties sitting on the null cone.
