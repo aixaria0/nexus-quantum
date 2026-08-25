@@ -1,63 +1,61 @@
-# 🌌 NEXUS QUANTUM // PROJECT CHIMERA
+# NEXUS QUANTUM
 
-![Status](https://img.shields.io/badge/Status-Operational-00ff00?style=for-the-badge)
-![Verification](https://img.shields.io/badge/Verification-Lean_4_Geometric_Bounds-blue?style=for-the-badge)
-![Agent](https://img.shields.io/badge/Cognition-Gemini_1.5_Pro-purple?style=for-the-badge)
-![Quantum](https://img.shields.io/badge/Simulation-Qiskit_Aer-orange?style=for-the-badge)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![GitHub Pages](https://img.shields.io/badge/demo-live-success.svg)](https://aixaria0.github.io/nexus-quantum/)
+[![Project Type](https://img.shields.io/badge/type-research%20prototype-purple.svg)](#overview)
 
-**An autonomous, AI-driven Variational Quantum Eigensolver (VQE) optimization engine, strictly bound by formal mathematical proofs.**
+A research prototype that combines AI-guided VQE optimization, Lean 4 constraint checking, quantum simulation, and zero-noise extrapolation.
 
-🔗 **[Launch Live Dashboard Simulation](https://aixaria0.github.io/nexus-quantum/)**
+## Demo
 
----
+The live dashboard shows four main components:
 
-## 🚀 The Vision: Constrained Autonomy
+- Cognitive Engine
+- QLF Null-Cone Boundary
+- VQE Energy Topology
+- Hardware ZNE Mitigation
 
-Project Chimera represents a paradigm shift in how artificial intelligence interacts with quantum hardware. Instead of granting an AI unrestricted access to generate quantum circuits, this pipeline introduces **Hard-Stop Constraint Enforcement**. 
+If you add a screenshot or short GIF later, place it here.
 
-An autonomous agent (Google Gemini 1.5 Pro) operates within an OODA loop (Observe, Orient, Decide, Act) to navigate the complex Hilbert space and optimize VQE parameters. However, every decision is intercepted and verified against a set of geometric and topological proofs formulated in **Lean 4**. 
+## Overview
 
-If the agent hallucinates or proposes parameters that cause a logical state collapse (breaching the Null-Cone Boundary), the execution is brutally halted, logged, and the agent is forced to recalculate.
+NEXUS QUANTUM explores a constrained workflow for quantum optimization.
 
-**Constraints are not obstacles; they are the core feature of this platform.**
+An AI agent proposes VQE parameter updates, Lean 4 checks whether those proposals satisfy the defined constraints, the circuit is evaluated in simulation, and mitigation techniques are applied to reduce noise effects.
 
----
+The goal is to demonstrate how AI-assisted quantum optimization can remain within explicit mathematical and physical boundaries.
 
-## 🧠 Core Architecture
+## Core Components
 
-The architecture is divided into four deeply integrated panels, streaming at a constant 2Hz via WebSocket:
+### Cognitive Engine
+The agent analyzes the current optimization state and proposes the next circuit parameters.
 
-### 1. Chimera Cognition Engine
-*   **Role:** The "Brain" of the system.
-*   **Mechanism:** Gemini 1.5 Pro analyzes the current Hamiltonian energy, state fidelity, and spectral eigenvalue. It formulates a strategy to tune $R_y$ and $R_z$ gate rotations to achieve the ground state.
-*   **Transparency:** Complete visibility into the agent's internal monologue and reasoning.
+### QLF Null-Cone Boundary
+Lean 4 is used to enforce constraint checks before execution. If a proposal violates the defined bounds, the execution path is blocked.
 
-### 2. QLF Null-Cone Boundary (Lean 4)
-*   **Role:** The "Immutable Law".
-*   **Mechanism:** Parses constraints directly from mathematical proofs (`zfa_implies_null_spectral`). 
-*   **Enforcement:** Evaluates the `toSpectralMode` invariant. If the spectral scalar $c$ approaches $0$, the topological string symmetric constraint is breached, indicating zero-fidelity alignment failure. The execution gate snaps shut.
+### VQE Energy Topology
+The circuit is simulated to evaluate energy convergence toward the target ground state.
 
-### 3. Energy Topology (Physics)
-*   **Role:** The "Objective Reality".
-*   **Mechanism:** Simulates the parameterized ansatz circuit using `qiskit-aer`. Calculates the exact eigenvalue convergence toward the molecular ground state (measured in Hartree, Ha).
+### Hardware ZNE Mitigation
+Zero-noise extrapolation is used to reduce noise-induced error and improve state estimation.
 
-### 4. Hardware ZNE Mitigation
-*   **Role:** The "Bridge to NISQ".
-*   **Mechanism:** Implements Zero-Noise Extrapolation. The pipeline dynamically scales noise channels using varying fold factors ($\lambda = 1, 3, 5, 7$) and extrapolates the mitigated state purity to bypass hardware decoherence.
+## Constraints
 
----
+The current system uses the following bounds:
 
-## 📐 Formal Constraint Definitions
+- Rotation angles: within `[0, 2π]`
+- Ground state energy: within `[-10, 10]` Ha
+- Fidelity: within `[0, 1]`
+- Spectral scalar: within `[0.01, 1.0]`
+- Gate count: greater than `0`
 
-Every proposed matrix mutation must pass the following immutable bounds before execution:
+## Quick Start
 
-*   **Rotation Angles:** $\theta \in [0, 2\pi]$ (Quantum mechanical validity)
-*   **Ground State Energy:** $E \in [-10, 10]$ Ha (Physical molecular bounds)
-*   **Fidelity:** $F \in [0, 1]$ (State purity)
-*   **Spectral Scalar:** $c \in [0.01, 1.0]$ (Null-cone boundary containment)
-*   **Gate Count:** $> 0$ (Non-empty circuit invariant)
-
----
+```bash
+pip install fastapi uvicorn qiskit qiskit-aer pydantic google-generativeai websockets
+export GEMINI_API_KEY="your-gemini-api-key"
+cd backend
+python main_agent_vqe.py
 
 ## 🛠️ Deployment & Execution
 
