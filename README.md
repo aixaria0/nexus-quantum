@@ -8,14 +8,14 @@ A research prototype that combines AI-guided VQE optimization, Lean 4 constraint
 
 ## Demo
 
-The live dashboard shows four main components: https://github.com/aixaria0/nexus-quantum
+The live dashboard shows four main components:
 
 - Cognitive Engine
 - QLF Null-Cone Boundary
 - VQE Energy Topology
 - Hardware ZNE Mitigation
 
-If you add a screenshot or short GIF later, place it here.
+A live demo is available at <a href="https://aixaria0.github.io/nexus-quantum/" target="_blank">Nexus Quantum</a>.
 
 ## Overview
 
@@ -24,6 +24,17 @@ NEXUS QUANTUM explores a constrained workflow for quantum optimization.
 An AI agent proposes VQE parameter updates, Lean 4 checks whether those proposals satisfy the defined constraints, the circuit is evaluated in simulation, and mitigation techniques are applied to reduce noise effects.
 
 The goal is to demonstrate how AI-assisted quantum optimization can remain within explicit mathematical and physical boundaries.
+
+## Architecture
+
+The system is organized into four components:
+
+| Component | Responsibility | Code area |
+|---|---|---|
+| Cognitive Engine | Proposes the next circuit parameters | `backend/` |
+| QLF Null-Cone Boundary | Enforces Lean 4 constraint checks before execution | `backend/` |
+| VQE Energy Topology | Simulates energy convergence toward the target state | `backend/` |
+| Hardware ZNE Mitigation | Applies zero-noise extrapolation to reduce error | `backend/` |
 
 ## Core Components
 
@@ -56,28 +67,17 @@ pip install fastapi uvicorn qiskit qiskit-aer pydantic google-generativeai webso
 export GEMINI_API_KEY="your-gemini-api-key"
 cd backend
 python main_agent_vqe.py
-
-## 🛠️ Deployment & Execution
-
-### Live Simulation (GitHub Pages)
-The primary dashboard is available as a client-side simulation, demonstrating the exact data flow, UI rendering, and convergence charts as driven by the backend WebSocket stream.
-👉 **[View Dashboard](https://aixaria0.github.io/nexus-quantum/)**
-
-### Local Backend Ignition (FastAPI)
-To run the true quantum-AI backend locally:
-
-```bash
-# 1. Install Dependencies
-pip install fastapi uvicorn qiskit qiskit-aer pydantic google-generativeai websockets
-
-# 2. Authenticate the Chimera Agent
-export GEMINI_API_KEY="your-gemini-api-key"
-
-# 3. Ignite the Pipeline
-cd backend
-python main_agent_vqe.py
-
-The backend will stream the verified quantum payload at 2Hz on localhost:8000.
-​🛡️ Mathematical Flawlessness
-​This is not an unrestricted execution engine. It is a legally and mathematically bound quantum researcher. The Lean 4 proofs are real mathematical guarantees within their domain. They verify circuit geometry, preventing the AI from wasting expensive QPU time on mathematically impossible ansatz configurations.
-​Built by Aria Fanee — Orchestrating the intersection of Computational Pathology, Quantum Systems, and AI Security.
+The backend streams verified quantum payloads on localhost:8000.
+Repository Structure
+backend/ — backend service and agent logic
+frontend/ — dashboard interface
+.github/workflows/ — CI/CD workflows
+README_AGENT_VQE.md — agent-specific documentation
+SETUP_AGENT_VQE.md — local setup instructions
+Notes
+This project is a simulation and research prototype.
+It demonstrates how formal verification can be used as a control layer for AI-assisted quantum optimization.
+Author
+Aria Fani
+License
+Apache-2.0
