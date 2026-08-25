@@ -79,3 +79,7 @@ export GEMINI_API_KEY="your-gemini-api-key"
 cd backend
 python main_agent_vqe.py
 
+The backend will stream the verified quantum payload at 2Hz on localhost:8000.
+​🛡️ Mathematical Flawlessness
+​This is not an unrestricted execution engine. It is a legally and mathematically bound quantum researcher. The Lean 4 proofs are real mathematical guarantees within their domain. They verify circuit geometry, preventing the AI from wasting expensive QPU time on mathematically impossible ansatz configurations.
+​Built by Aria Fanee — Orchestrating the intersection of Computational Pathology, Quantum Systems, and AI Security.
