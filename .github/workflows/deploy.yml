@@ -1,11 +1,47 @@
-name: Deploy Nexus Quantum
+name: QLF Formal Verification
+
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
 jobs:
-  deploy:
+  verify-qlf:
+    name: Machine-check QLF Null Cone
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup
-        run: echo "Nexus Quantum CI Ready"
+      - name: Checkout Nexus Quantum
+        uses: actions/checkout@v4
+        with:
+          path: nexus-quantum
+
+      - name: Checkout Quantum Logical Framework
+        uses: actions/checkout@v4
+        with:
+          repository: jimscarver/quantum-logical-framework
+          ref: main
+          path: quantum-logical-framework
+
+      - name: Install Lean toolchain
+        uses: leanprover/lean4-action@v1
+        with:
+          use-mathlib-cache: true
+
+      - name: Verify QLF baseline
+        working-directory: quantum-logical-framework
+        run: |
+          lake build
+
+      - name: Install Nexus Null Cone module
+        run: |
+          cp \
+            nexus-quantum/backend/qlf_math/QLF_NullCone.lean \
+            quantum-logical-framework/lean/QLF_NullCone.lean
+
+      - name: Machine-check QLF_NullCone
+        working-directory: quantum-logical-framework
+        run: |
+          lake env lean lean/QLF_NullCone.lean
